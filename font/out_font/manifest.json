@@ -1,0 +1,28 @@
+{
+  "source_cat": "texture_extend(Original).cat",
+  "global": {
+    "a0": 1,
+    "a1": 1,
+    "global_header_size": 256,
+    "tail_offset": 57344,
+    "file_size": 57600
+  },
+  "detected": {
+    "internal_base": 256,
+    "count": 1,
+    "table_pos": 792,
+    "table_layout": "offsets[u32]*count + sizes[u32]*count"
+  },
+  "items": [
+    {
+      "index": 0,
+      "offset": 512,
+      "size": 168,
+      "file_hint": "0000.bin"
+    }
+  ],
+  "notes": [
+    "repack은 안전 모드입니다: 각 blob 크기는 원본 size를 넘을 수 없습니다.",
+    "원본보다 작으면 나머지는 0x00으로 패딩됩니다."
+  ]
+}
