@@ -1,0 +1,4 @@
+python advtext_ja_pipeline.py extract advtext.csv advtext_ja.csv
+:: advtext_ja.csv에서 kr만 채우기
+python advtext_ja_pipeline.py merge advtext.csv advtext_ja.csv advtext_ready.csv
+python advtext_tool_final.py import advtext.cat advtext_ready.csv advtext_patched.cat
