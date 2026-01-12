@@ -20,4 +20,6 @@
 - python advtext_jp_workflow.py build [원본 cat파일] [추출할 폴더]
 - python advtext_jp_workflow.py apply [원본 cat파일] [추출 폴더]/text_jp.csv [추출 폴더]/text_jp_diag.csv [저장 될 cat 파일]
 
-### 
+### talkspt_jp_workflow.py
+- python talkspt_jp_workflow.py build [원본 cat파일] [추출할 폴더]
+- python talkspt_jp_workflow.py apply [원본 cat파일] [추출 폴더]/text_jp.csv [추출 폴더]/text_jp_diag.csv [저장 될 cat 파일]
