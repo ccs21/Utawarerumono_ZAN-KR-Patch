@@ -1,4 +1,9 @@
-python advtext_ja_pipeline.py extract advtext.csv advtext_ja.csv
-:: advtext_ja.csv에서 kr만 채우기
-python advtext_ja_pipeline.py merge advtext.csv advtext_ja.csv advtext_ready.csv
-python advtext_tool_final.py import advtext.cat advtext_ready.csv advtext_patched.cat
+1) 후보/대표 CSV 만들기
+python advtext_jp_workflow.py build advtext.cat out_dir
+
+3) 병합해서 패치된 advtext.cat 만들기
+python advtext_jp_workflow.py apply advtext.cat out_dir/text_jp.csv out_dir/text_jp_diag.csv out_dir/advtext_patched.cat
+
+
+
+g
