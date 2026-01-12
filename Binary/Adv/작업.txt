@@ -1,9 +1,13 @@
 1) 후보/대표 CSV 만들기
-python advtext_jp_workflow.py build advtext.cat out_dir
+python advtext_jp_workflow.py build advtext.cat out_advtext
 
 3) 병합해서 패치된 advtext.cat 만들기
-python advtext_jp_workflow.py apply advtext.cat out_dir/text_jp.csv out_dir/text_jp_diag.csv out_dir/advtext_patched.cat
+python advtext_jp_workflow.py apply advtext.cat out_advtext/text_jp.csv out_advtext/text_jp_diag.csv advtext_patched.cat
 
 
 
-g
+추출/정렬(CSV 생성)
+python talkspt_jp_workflow.py build talkspt.cat out_talkspt
+
+병합/재빌드
+python talkspt_jp_workflow.py apply talkspt.cat out_talkspt/text_jp.csv out_talkspt/text_jp_diag.csv out_talkspt/talkspt_patched.cat
