@@ -5,15 +5,20 @@
 
 ## 폰트
 ### extract_lds_dds.py 
-- python extract_lds_dds.py [폰트LDS파일] [언팩 폴더]
+- python extract_lds_dds.py font_00_ori.lds out_font00
 
-## UI
 ### inject_lds_dds.py
-- python inject_lds_dds.py [원본 폰트LDS파일] [언팩 폴더] [저장될 LDS파일]
+- python inject_lds_dds.py font_00_ori.lds out_font00 font_00_nwew.lds
 
+  
+## UI
 ### ttb_tool.py
-- python ttb_tool.py export [ttb파일] [csv파일]
-- python ttb_tool.py import [원본ttb파일] [번역된csv파일] [저장 될 ttb파일] --lang [언어]
+- python ttb_tool.py export text_ori.ttb text.csv
+
+### hangul2kanji_ttb_patcher.py
+- python hangul2kanji_ttb_patcher.py --ttb text_ori.ttb --csv text.csv --mapping hangul_to_kanji_mapping_2350.csv --out-ttb text_new.ttb
+
+
 
 ## 대사
 ### advtext_jp_workflow.py
