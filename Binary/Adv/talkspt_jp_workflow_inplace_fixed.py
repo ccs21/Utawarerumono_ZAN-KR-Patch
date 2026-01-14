@@ -270,71 +270,51 @@ def find_blocks(buf: bytes) -> List[BlockInfo]:
 # 포인터(u32) 위치 추적: "문자열 시작 offset"을 가리키는 값만 안전하게 갱신
 # ------------------------
 
-def build_pointer_locations(buf: bytes, strs: List[StrRec]) -> List[Tuple[int, int]]:
+def build_pointer_locations(buf: bytes, str_offsets_set: set[int]) -> List[Tuple[int, int]]:
     """
-    talkspt.cat은 "문자열 시작 오프셋"뿐 아니라, 문자열 내부(start+1 등)를 가리키는 포인터가 다수 존재합니다.
-    따라서 포인터 후보를 다음과 같이 추적합니다.
-
-    1) 4바이트 정렬 위치(loc, loc+4) 중, loc 자체가 문자열 데이터 구간 안이면 제외(텍스트를 덮어쓰지 않기 위함)
-    2) u32 값(v)이 어떤 문자열 구간 [start, end) 안에 포함되면 "문자열을 가리키는 포인터" 후보로 표시
-    3) 파일 전체를 다 갱신하면 오탐 위험이 있어, 포인터 후보 밀도가 높은 영역(bin)만 자동 선택하여 갱신
-
-    이 로직은 현재 talkspt.cat 샘플에서 관측되는 '포인터 테이블' 패턴(0x5000~0xB000 부근)을 안정적으로 잡아줍니다.
+    buf 전체를 4바이트 단위로 스캔하여,
+    값이 str_offsets_set에 속하면 (pointer_location, target_old_offset) 기록.
     """
-    import bisect
-    intervals = sorted((s.offset, s.end) for s in strs)
-    starts = [a for a, _ in intervals]
-    ends = [b for _, b in intervals]
-
-    def in_string(pos: int) -> bool:
-        i = bisect.bisect_right(starts, pos) - 1
-        return i >= 0 and pos < ends[i]
-
-    def is_string_target(v: int) -> bool:
-        i = bisect.bisect_right(starts, v) - 1
-        return i >= 0 and v < ends[i]
-
-    # 1) 포인터 후보 수집 + 2) bin별 밀도 계산
-    BIN = 0x1000
-    from collections import defaultdict
-    stats = defaultdict(lambda: [0, 0])  # bin -> [hit, total]
-    cands: List[Tuple[int, int, int]] = []  # (loc, v, bin)
-
+    out = []
     n = len(buf)
     for loc in range(0, n - 4 + 1, 4):
-        if in_string(loc):
-            continue
         v = struct.unpack_from("<I", buf, loc)[0]
-        b = loc // BIN
-        stats[b][1] += 1
-        if is_string_target(v):
-            stats[b][0] += 1
-            cands.append((loc, v, b))
-
-    # 3) 포인터 테이블 bin 자동 선택 (오탐 방지)
-    # - hit 비율이 높은 bin을 선택하고, 인접 bin을 약하게 포함
-    good = set()
-    for b, (hit, total) in stats.items():
-        if total == 0:
-            continue
-        ratio = hit / total
-        if hit >= 50 and ratio >= 0.45:
-            good.add(b)
-
-    # 인접 bin: 최소 hit 20 & ratio 0.20 이상이면 포함
-    for b in list(good):
-        for nb in (b - 1, b + 1):
-            if nb in good:
-                continue
-            hit, total = stats.get(nb, (0, 0))
-            if total and hit >= 20 and (hit / total) >= 0.20:
-                good.add(nb)
-
-    out: List[Tuple[int, int]] = [(loc, v) for (loc, v, b) in cands if b in good]
+        if v in str_offsets_set:
+            out.append((loc, v))
     return out
 
 # ------------------------
 # Rebuild core: apply string replacements with shifting + pointer update + block size update
+
+# ------------------------
+# In-place patch mode (NO offset shifting)
+# - Keeps original [start,end) spans intact; overwrites bytes and pads with NUL.
+# - This is safer when the format contains substring pointers (start+N).
+# ------------------------
+def normalize_width(text: str) -> str:
+    """Normalize ASCII chars that change byte alignment."""
+    if text is None:
+        return text
+    # ASCII space -> full-width space (3 bytes in UTF-8)
+    text = text.replace(' ', '　')
+    # Three dots -> Japanese ellipsis
+    text = text.replace('...', '…')
+    # Windows-style newlines to match original exporter (CRLF)
+    text = text.replace('\r\n', '\n').replace('\n', '\r\n')
+    return text
+
+def apply_replacements_inplace(buf: bytes, repls: list) -> bytes:
+    b = bytearray(buf)
+    for r in repls:
+        span = r.end - r.start
+        nb = r.new_bytes
+        if len(nb) > span:
+            raise ValueError(f'[INPLACE] replacement too long at 0x{r.start:X}: {len(nb)} > {span}')
+        # overwrite and pad with NUL
+        b[r.start:r.start+len(nb)] = nb
+        if len(nb) < span:
+            b[r.start+len(nb):r.end] = b'\x00' * (span - len(nb))
+    return bytes(b)
 # ------------------------
 
 @dataclass
@@ -515,7 +495,7 @@ def build_candidates(master_rows: List[Dict], out_jp_csv: Path, out_diag_csv: Pa
             ja_clean = RE_PLACEHOLDER.sub("", tpl)
             w.writerow([rep["group_key"], pr, gsz, rep["jp_type"], rep["offset"], rep["end"], rep["text"], tpl, ja_clean, _encode_lock_list(toks), tpl])
 
-def apply_translations(cat_in: Path, text_jp_csv: Path, diag_csv: Path, cat_out: Path, auto_fix: bool=False, hangul2kanji_csv: Optional[Path]=None) -> None:
+def apply_translations(cat_in: Path, text_jp_csv: Path, diag_csv: Path, cat_out: Path, auto_fix: bool=False, hangul2kanji_csv: Optional[Path]=None, mode: str='inplace', no_width_normalize: bool=False) -> None:
     buf = cat_in.read_bytes()
     strs = scan_all_utf8_cstr(buf)
     # quick lookup by offset
@@ -588,7 +568,9 @@ def apply_translations(cat_in: Path, text_jp_csv: Path, diag_csv: Path, cat_out:
                     dst = dst2
                 else:
                     raise ValueError(f"[LOCK FAIL] offset=0x{off:X} missing={missing}")
-            new_bytes = dst.encode("utf-8") + b"\x00"
+            if not no_width_normalize:
+                dst = normalize_width(dst)
+            new_bytes = dst.encode('utf-8') + b'\x00'
             repls.append(Replacement(start=rec.offset, end=rec.end, new_bytes=new_bytes))
 
     if h2k_unknown:
@@ -597,7 +579,7 @@ def apply_translations(cat_in: Path, text_jp_csv: Path, diag_csv: Path, cat_out:
 
     # pointer locations that target any string start
     str_offsets_set = set(by_off.keys())
-    pointer_locs = build_pointer_locations(buf, strs)
+    pointer_locs = build_pointer_locations(buf, str_offsets_set)
 
     # block headers
     blocks = find_blocks(buf)
@@ -638,6 +620,8 @@ def cmd_apply(args):
         Path(args.out_cat),
         auto_fix=args.auto_fix_lock,
         hangul2kanji_csv=h2k_csv,
+        mode=args.mode,
+        no_width_normalize=args.no_width_normalize,
     )
 
 def main():
@@ -659,6 +643,10 @@ def main():
                    help='한글→한자 매핑 CSV 경로(기본: hangul_to_kanji_mapping_2350.csv). CWD에 없으면 스크립트 폴더에서 재탐색')
     a.add_argument('--no-hangul2kanji', action='store_true', help='한글→한자 치환을 끕니다(디버그/테스트용)')
     a.add_argument("--auto-fix-lock", action="store_true", help="잠금 토큰 누락 시 자동 복구 시도(끝에 덧붙임)")
+    a.add_argument("--mode", choices=["shift","inplace"], default="inplace",
+                   help="inplace: 기존 문자열 구간을 유지하며 덮어쓰기(안전). shift: 문자열 풀 재배치 + 포인터 업데이트(위험).")
+    a.add_argument("--no-width-normalize", action="store_true",
+                   help="문장 내 공백/줄바꿈 등의 정규화를 끕니다(기본은 정규화 ON).")
     a.set_defaults(func=cmd_apply)
 
     args = ap.parse_args()
