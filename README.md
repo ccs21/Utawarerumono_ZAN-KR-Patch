@@ -20,12 +20,15 @@
 
 
 
-## 대사
-### advtext_jp_workflow.py
-- python advtext_jp_workflow.py build [원본 cat파일] [추출할 폴더]
-- python advtext_jp_workflow.py apply [원본 cat파일] [추출 폴더]/text_jp.csv [추출 폴더]/text_jp_diag.csv [저장 될 cat 파일]
+## 어드벤쳐 파트 대사
+### advtext_used_inplace_workflow_v3_fixed.py (추출)
+- python advtext_used_inplace_workflow_v3_fixed.py extract advtext.cat --scripts advspt_story.cat advspt_proto.cat --out used_advtext_jp.csv --lang jp --step 1
 
-### talkspt_jp_workflow.py
+
+## 토크 파트 대사
+### talkspt_jp_workflow.py (추출)
 - python talkspt_jp_workflow.py build [원본 cat파일] [추출할 폴더]
+
+### talkspt_jp_workflow_patched.py (패치)
 - python talkspt_jp_workflow_patched.py apply talkspt.cat out_talkspt/text_jp.csv out_talkspt/text_jp_diag.csv talkspt_patched.cat
 
