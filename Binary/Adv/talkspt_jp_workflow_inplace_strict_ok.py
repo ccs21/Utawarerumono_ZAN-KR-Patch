@@ -303,6 +303,26 @@ def normalize_width(text: str) -> str:
     text = text.replace('\r\n', '\n').replace('\n', '\r\n')
     return text
 
+def format_preview(s: str, n: int = 60) -> str:
+    """One-line preview for logs."""
+    if s is None:
+        return ""
+    s = s.replace("\r", "").replace("\n", "\\n")
+    return (s[:n] + "…") if len(s) > n else s
+
+def write_overflow_report_csv(path: str, items: list) -> None:
+    """Write overflow diagnostics as UTF-8-SIG CSV."""
+    import csv
+    headers = [
+        "row_no","rep_id_hex","group_key","over_by_bytes",
+        "span_bytes","needed_bytes","ja_preview","kr_preview"
+    ]
+    with open(path, "w", encoding="utf-8-sig", newline="") as f:
+        w = csv.writer(f, quoting=csv.QUOTE_ALL)
+        w.writerow(headers)
+        for it in items:
+            w.writerow([it.get(h, "") for h in headers])
+
 def apply_replacements_inplace(buf: bytes, repls: list) -> bytes:
     b = bytearray(buf)
     for r in repls:
@@ -495,30 +515,55 @@ def build_candidates(master_rows: List[Dict], out_jp_csv: Path, out_diag_csv: Pa
             ja_clean = RE_PLACEHOLDER.sub("", tpl)
             w.writerow([rep["group_key"], pr, gsz, rep["jp_type"], rep["offset"], rep["end"], rep["text"], tpl, ja_clean, _encode_lock_list(toks), tpl])
 
-def apply_translations(cat_in: Path, text_jp_csv: Path, diag_csv: Path, cat_out: Path, auto_fix: bool=False, hangul2kanji_csv: Optional[Path]=None, mode: str='inplace', no_width_normalize: bool=False) -> None:
+def apply_translations(
+    cat_in: Path,
+    text_jp_csv: Path,
+    diag_csv: Path,
+    cat_out: Path,
+    *,
+    auto_fix: bool = False,
+    hangul2kanji_csv: Optional[Path] = None,
+    mode: str = "inplace",
+    no_width_normalize: bool = False,
+    allow_overflow: bool = False,
+    overflow_report: str = "talkspt_overflow_report.csv",
+) -> None:
+    """
+    mode=inplace:
+      - 문자열 구간 [start,end) 을 그대로 유지하고 그 안에서만 덮어쓰기
+      - 길이 초과(바이트)가 발생하면 기본적으로 빌드 중단 + 리포트 출력
+
+    mode=shift:
+      - 문자열 풀 재배치 + 포인터/블록 헤더 갱신(기존 방식, 위험)
+    """
     buf = cat_in.read_bytes()
     strs = scan_all_utf8_cstr(buf)
-    # quick lookup by offset
     by_off: Dict[int, StrRec] = {s.offset: s for s in strs}
 
     # group_key -> targets(offset list)
     jp_rows = load_csv_rows(text_jp_csv)
     grp_targets: Dict[str, List[int]] = {}
     for r in jp_rows:
-        gk = r["group_key"]
+        gk = r.get("group_key", "")
+        if not gk:
+            continue
         off = int(r["offset"])
         grp_targets.setdefault(gk, []).append(off)
 
+    # diag: group_key -> translation, and meta for reporting
     diag_rows = load_csv_rows(diag_csv)
     trans_group: Dict[str, str] = {}
-    for r in diag_rows:
-        gk = r["group_key"]
-        ja_rep = r["ja"]
-        kr_tpl = r.get("kr_tpl","")
-        locks = _decode_lock_list(r.get("locks",""))
-        kr = detokenize_locks(kr_tpl, locks)
-        if not kr.strip():
+    trans_meta: Dict[str, Dict[str, str]] = {}
+    for row_no, r in enumerate(diag_rows, start=2):  # CSV line number (header=1)
+        gk = r.get("group_key", "")
+        if not gk:
             continue
+        ja_rep = r.get("ja_clean", "") or r.get("ja", "")
+        kr_tpl = r.get("kr_tpl", "")
+        if not kr_tpl.strip():
+            continue
+        locks = _decode_lock_list(r.get("locks", ""))
+        kr = detokenize_locks(kr_tpl, locks)
         ok, missing = validate_lock_tokens(ja_rep, kr)
         if not ok:
             if auto_fix:
@@ -530,11 +575,17 @@ def apply_translations(cat_in: Path, text_jp_csv: Path, diag_csv: Path, cat_out:
             else:
                 raise ValueError(f"[LOCK FAIL] group_key={gk} missing={missing} -> kr에서 잠금 토큰이 사라졌습니다.")
         trans_group[gk] = kr
+        trans_meta[gk] = {
+            "row_no": str(row_no),
+            "rep_id_hex": r.get("rep_id_hex", ""),
+            "ja_preview": format_preview(ja_rep),
+            "kr_preview": format_preview(kr_tpl),
+        }
 
     if not trans_group:
         raise ValueError("번역(kr_tpl)이 채워진 행이 없습니다. diag_csv의 kr_tpl을 채워주세요.")
 
-    # 한글 -> 한자(폰트용) 치환 매핑 (옵션)
+    # Hangul->Kanji map (optional)
     h2k_map: Optional[Dict[str, str]] = None
     h2k_unknown: set = set()
     if hangul2kanji_csv is not None:
@@ -544,12 +595,15 @@ def apply_translations(cat_in: Path, text_jp_csv: Path, diag_csv: Path, cat_out:
         else:
             print(f"[WARN] hangul2kanji_csv not found: {hangul2kanji_csv} (치환 없이 진행)")
 
-
-    # build replacements (per string offset)
+    # Build replacements
     repls: List[Replacement] = []
     used_offsets = set()
+    overflow_items: List[dict] = []
     for gk, kr in trans_group.items():
-        for off in grp_targets.get(gk, []):
+        targets = grp_targets.get(gk, [])
+        if not targets:
+            continue
+        for off in targets:
             if off in used_offsets:
                 continue
             used_offsets.add(off)
@@ -570,23 +624,57 @@ def apply_translations(cat_in: Path, text_jp_csv: Path, diag_csv: Path, cat_out:
                     raise ValueError(f"[LOCK FAIL] offset=0x{off:X} missing={missing}")
             if not no_width_normalize:
                 dst = normalize_width(dst)
-            new_bytes = dst.encode('utf-8') + b'\x00'
+            new_bytes = dst.encode("utf-8") + b"\x00"
+            span = rec.end - rec.offset
+            if mode == "inplace" and len(new_bytes) > span:
+                meta = trans_meta.get(gk, {})
+                overflow_items.append({
+                    "row_no": meta.get("row_no", ""),
+                    "rep_id_hex": meta.get("rep_id_hex", ""),
+                    "group_key": gk,
+                    "over_by_bytes": len(new_bytes) - span,
+                    "span_bytes": span,
+                    "needed_bytes": len(new_bytes),
+                    "ja_preview": meta.get("ja_preview", ""),
+                    "kr_preview": meta.get("kr_preview", ""),
+                })
+                if allow_overflow:
+                    continue
+                else:
+                    continue
             repls.append(Replacement(start=rec.offset, end=rec.end, new_bytes=new_bytes))
 
     if h2k_unknown:
         sample = ''.join(sorted(list(h2k_unknown))[:50])
         print(f"[WARN] 매핑에 없는 한글 {len(h2k_unknown)}개가 남아있습니다. (샘플: {sample})")
 
-    # pointer locations that target any string start
+    if mode == "inplace":
+        if overflow_items and not allow_overflow:
+            overflow_items.sort(key=lambda x: int(x.get("over_by_bytes", 0)), reverse=True)
+            print("")
+            print("[ERROR] In-place patch aborted: some translations exceed their allocated byte spans.")
+            print("        Fix these lines (shorten translation) and retry.")
+            for it in overflow_items[:50]:
+                print(f"  - row {it['row_no']} rep_id={it['rep_id_hex']} over_by={it['over_by_bytes']}B (span={it['span_bytes']}B need={it['needed_bytes']}B) :: {it['kr_preview']}")
+            try:
+                write_overflow_report_csv(overflow_report, overflow_items)
+                print(f"[ERROR] Overflow report written: {overflow_report}")
+            except Exception as e:
+                print(f"[WARN] Failed to write overflow report CSV: {e}")
+            raise SystemExit(2)
+
+        out = apply_replacements_inplace(buf, repls)
+        cat_out.write_bytes(out)
+        print(f"[OK] Patched talkspt.cat -> {cat_out}  (mode=inplace, strings patched: {len(repls)}, overflows: {len(overflow_items)})")
+        return
+
+    # shift mode (기존 방식)
     str_offsets_set = set(by_off.keys())
     pointer_locs = build_pointer_locations(buf, str_offsets_set)
-
-    # block headers
     blocks = find_blocks(buf)
-
     out = rebuild_with_replacements(buf, repls, pointer_locs, blocks)
     cat_out.write_bytes(out)
-    print(f"[OK] Patched talkspt.cat -> {cat_out}  (strings patched: {len(repls)})")
+    print(f"[OK] Patched talkspt.cat -> {cat_out}  (mode=shift, strings patched: {len(repls)})")
 
 # ------------------------
 # CLI
@@ -622,6 +710,8 @@ def cmd_apply(args):
         hangul2kanji_csv=h2k_csv,
         mode=args.mode,
         no_width_normalize=args.no_width_normalize,
+        allow_overflow=args.allow_overflow,
+        overflow_report=args.overflow_report,
     )
 
 def main():
@@ -645,6 +735,10 @@ def main():
     a.add_argument("--auto-fix-lock", action="store_true", help="잠금 토큰 누락 시 자동 복구 시도(끝에 덧붙임)")
     a.add_argument("--mode", choices=["shift","inplace"], default="inplace",
                    help="inplace: 기존 문자열 구간을 유지하며 덮어쓰기(안전). shift: 문자열 풀 재배치 + 포인터 업데이트(위험).")
+    a.add_argument("--allow-overflow", action="store_true",
+                   help="(비추천) inplace에서 길이 초과 줄을 에러로 중단하지 않고 스킵합니다.")
+    a.add_argument("--overflow-report", default="talkspt_overflow_report.csv",
+                   help="inplace 길이 초과 발생 시 상세 리포트를 저장할 CSV 경로")
     a.add_argument("--no-width-normalize", action="store_true",
                    help="문장 내 공백/줄바꿈 등의 정규화를 끕니다(기본은 정규화 ON).")
     a.set_defaults(func=cmd_apply)
