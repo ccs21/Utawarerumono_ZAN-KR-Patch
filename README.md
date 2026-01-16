@@ -27,6 +27,14 @@
 ### advtext_used_inplace_workflow_v3_fixed.py (패치)
 - python advtext_used_inplace_workflow_v3_fixed.py apply advtext.cat used_advtext_jp.csv --mapping hangul_to_kanji_mapping_2350.csv --out advtext_patched.cat
 
+### 추가 추출(미 번역 분)
+- python extract_unpatched_used_advtext.py --orig advtext.cat --patched advtext_patched.cat --scripts advspt_story.cat advspt_proto.cat --out used_advtext_unpatched_jp.csv --lang jp --min-chars 1 --step 1
+
+### 추가 추출분 패치
+- python advtext_used_inplace_workflow_v3_fixed.py apply advtext_patched.cat used_advtext_unpatched_jp.csv --mapping hangul_to_kanji_mapping_2350.csv --out advtext_patched_v2.cat
+
+
+
 
 ## 토크 파트 대사
 ### talkspt_jp_workflow.py (추출)
