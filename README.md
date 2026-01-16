@@ -32,6 +32,7 @@
 ### talkspt_jp_workflow.py (추출)
 - python talkspt_jp_workflow.py build [원본 cat파일] [추출할 폴더]
 
-### talkspt_jp_workflow_patched.py (패치)
-- python talkspt_jp_workflow_patched.py apply talkspt.cat out_talkspt/text_jp.csv out_talkspt/text_jp_diag.csv talkspt_patched.cat
+### talkspt_jp_workflow_inplace_strict_ok_v3.py (패치)
+- ppython talkspt_jp_workflow_inplace_strict_ok_v3.py apply talkspt.cat out_talkspt\text_jp.csv out_talkspt\text_jp_diag.csv talkspt_patched.cat --only-normal
+
 
