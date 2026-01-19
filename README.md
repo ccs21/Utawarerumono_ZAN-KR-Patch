@@ -2,6 +2,7 @@
 
 칭송받는자 참! 한글화 패치 시도합니다.
 
+<img alt="참 한패" src="https://github.com/user-attachments/assets/2419a9d8-acd4-4935-b186-a38023c6f4fe" />
 
 ## 폰트
 ### extract_lds_dds.py 
