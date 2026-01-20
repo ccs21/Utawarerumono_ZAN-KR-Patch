@@ -90,7 +90,7 @@ Hm, did I go too far?",1,"嘿……咻。
 79,5B704C68,79,0,복사 원본 시트,0,,0,
 80,0079A8F3,327,16,자유 임무(온라인) 24,16,,16,
 81,01432BFD,212,3,특수 격파,3,,3,
-82,02FAD2BF,281,22,"은밀
+82,02FAD2BF,281,22,"밀정
 식충 대작전",22,,22,
 83,062EEFE4,208,7,등장,7,,7,
 84,07146CEA,323,20,"최종 계층
@@ -322,7 +322,7 @@ Hm, did I go too far?",1,"嘿……咻。
 206,6FF336E4,217,8,컬러 배리에이션 의상 02(Cos00_02),8,,8,
 207,70135C7C,324,19,몽환연무 임무명 021,19,,19,
 208,7129DF72,209,6,기력 해방,6,,6,
-209,75FDE229,282,21,"은밀
+209,75FDE229,282,21,"밀정
 전투광의 밤",21,,21,
 210,76441B6B,213,2,파생 오의,2,,2,
 211,777E9865,328,15,자유 임무(온라인) 25,15,,15,
@@ -340,7 +340,7 @@ Hm, did I go too far?",1,"嘿……咻。
 216,7B1E62A2,204,1,베로시티 소스:%s,1,,1,
 217,7B266A1B,274,29,"닌
 거짓 이름을 사칭하는 자",29,,29,
-218,7C4BAE02,278,25,"은밀
+218,7C4BAE02,278,25,"밀정
 검호의 부탁
 
 보스：
@@ -389,7 +389,7 @@ Hm, did I go too far?",1,"嘿……咻。
 242,915CC600,168,2,콘트라스트:%.2f,2,,2,
 243,917847D0,237,8,가면의 장수,8,,8,
 244,91E0B2F2,249,14,금지된 불장난,14,,14,
-245,9245CF2E,280,23,"은밀
+245,9245CF2E,280,23,"밀정
 화살과 검의 대결",23,,23,
 246,927DC797,198,7,타입:%s,7,,7,
 247,9322F50D,98,2,카메라 회전/원근 변화(줌),2,,2,
@@ -529,7 +529,7 @@ Hm, did I go too far?",1,"嘿……咻。
 325,E22F3BA1,275,28,"닌
 북방의 강자",28,,28,
 326,E425C59B,97,3,카메라 회전 이동,3,,3,
-327,E542FFB8,279,24,"은밀
+327,E542FFB8,279,24,"밀정
 악의 검비위사",24,,24,
 328,E57AF701,197,8,%s,8,,8,
 329,E65BF696,169,1,명도:%.2f,1,,1,
@@ -1294,7 +1294,7 @@ New missions added to <[Story], [Battle Recollections],
 Outfit can be changed from the <[Party]:#ffd700> menu.",1,"・DLC服裝：斗篷久遠
 
 在<［整裝］:#ffd700>中可以更換服裝。"
-987,987EB7AA,1013,1,"・DLC 스페셜 의상: 우루룰/사라아나
+987,987EB7AA,1013,1,"・DLC 스페셜 의상: 우루루/사라나
 <［신변정리］:#ffd700>에서 의상을 변경할 수 있습니다.",1,"DLC Outfit: Uruuru & Saraana
 
 Outfit can be changed from the <[Party]:#ffd700> menu.",1,"・DLC特殊服裝：烏露露／薩拉娜
@@ -1305,7 +1305,7 @@ Outfit can be changed from the <[Party]:#ffd700> menu.",1,"・DLC特殊服裝：
 990,A12A00B5,948,5,<［ <rep_26> 특수기 ］:#ffd700> 길게 눌러 루프 콤보,5,<[<rep_26> Special]:#ffd700> Hold <rep triangle> for longer combos,5,<［ <rep_26> 特殊技能 ］:#ffd700>長按 <rep triangle> 進行無限連擊
 991,A17F7367,975,0,<%s:#ffd700>가<%d％:#ffd700> 상승했다!,0,<%s:#ffd700> boosted <%d%:#ffd700>!,0,<%s:#ffd700>上升了<%d％:#ffd700>！
 992,A3A9B998,965,8,"무려, 안에서<충견 오르공:#ffd700>이 튀어나왔다!",8,<Faithful Orkeko:#ffd700> appeared! It's a miracle!,8,沒想到，<忠犬獒公:#ffd700>從裡面出來了！
-993,A3FEC42D,997,0,우타와레루모노 참의 세이브 데이터입니다.,0,Utawarerumono: ZAN save data,0,受讚頌者斬的保存資料。
+993,A3FEC42D,997,0,칭송받는 자 참의 세이브 데이터입니다.,0,Utawarerumono: ZAN save data,0,受讚頌者斬的保存資料。
 994,A46DB60E,988,0,"<10>【 %s 】로 호스트가 전환되어, 방 이름이 기본으로 돌아갔습니다",0,<10>[%s] is now host. Room name was reset to default.,0,<10>房主已切換為【 %s 】，房間名已回復為默認名稱
 995,A4C47D81,969,4,"어디선가, 울부짖음이 들려온다…",4,You hear something howling in the distance...,4,不知從哪裡傳來嚎叫聲…
 996,A51E9E1A,1012,1,"・DLC 스페셜 의상: 오우기
@@ -1817,7 +1817,7 @@ Outfit can be changed from the <[Party]:#ffd700> menu.",1,"・DLC特殊服裝：
 
 <10>우즈울샤로 진군 중인 야마토 병사들과 조우했다.
 　그들은 우리를 우즈울샤의 밀정으로 의심해 교전하게 된다.
-　야마토 군세에 굴하지 말고, 은밀의 힘을 똑똑히 알려줘라!",5,"<[Battle Mission]:#ffd700>
+　야마토 군세에 굴하지 말고, 밀정의 힘을 똑똑히 알려줘라!",5,"<[Battle Mission]:#ffd700>
 
 Reports say two contingents of Uzurushan and Yamatan troops have
 run into each other. Tensions were high, and suspicions of
@@ -2119,7 +2119,7 @@ while Ukon handles the bandits. What could possibly go wrong?",14,"<【 擊敗�
 　 然而這一連串的騷動其實是右近為了查出伯勞一夥的巢穴才引起的。
 　 找到巢穴的右近對伯勞一夥發起猛攻。
 　 在這期間，哈克一行人受命在安全的地方保護露露緹耶……"
-1478,38FC887A,1556,5,"<【 은밀의 일에 익숙해지기 시작한 상태 】:#ffd700>
+1478,38FC887A,1556,5,"<【 밀정의 일에 익숙해지기 시작한 상태 】:#ffd700>
 　마무리가 아직 허술한 자.
 
 
@@ -2159,7 +2159,7 @@ Defeat <The Top of The Food Chain:#ffd700>",12,"<【 擊敗型任務 】:#ffd700
 
 <10>노스리 여단과 무투 연습을 하게 되었다.
 　노련한 집단이니, 봐주기는 불필요.
-　은밀로서의 실력을 시험할 좋은 기회다!",31,"<[Battle Mission]:#ffd700>
+　밀정으로서의 실력을 시험할 좋은 기회다!",31,"<[Battle Mission]:#ffd700>
 
 Nosuri and her cohorts have started a battle training program.
 There's no need to hold back against such seasoned warriors.
@@ -2290,7 +2290,7 @@ Find them and teach them a lesson!",28,"<【 擊敗型任務 】:#ffd700>
 　 讓這些襲來的蠻族嘗嘗苦頭吧！"
 1490,4F9D372D,1460,13,"<【 격파형 임무 】:#ffd700>
 
-<10>오슈토르의 은밀로 일하게 된 하쿠 일행은, 제도에서 첫 임무를 받게 된다.
+<10>오슈토르의 밀정으로 일하게 된 하쿠 일행은, 제도에서 첫 임무를 받게 된다.
 　그 임무란, 탈옥한 도적단 두목 모즈누를 다시 붙잡는 것.
 　수색을 시작한 하쿠 일행은 자신들의 거점인 백앵각에서
 　우연히도 모즈누 일가와 마주친다. 어이없는 재회에 동요하면서도
@@ -2308,7 +2308,7 @@ all the way to the outskirts of the city.",13,"<【 擊敗型任務 】:#ffd700>
 　 哈克一行人開始進行搜索，卻在自己的據點白樓閣偶然遇到了伯勞一夥。
 　 雖然哈克一行人因為這糊塗的再會而有所動搖，
 　 但他們仍然在帝都郊外將伯勞逼上了絕境。"
-1491,4FFBB8EC,1555,6,"<【 은밀로서는 아직 풋내기인 상태 】:#ffd700>
+1491,4FFBB8EC,1555,6,"<【 밀정으로서는 아직 풋내기인 상태 】:#ffd700>
 　시정의 심부름을 맡는 자.
 
 
@@ -2906,7 +2906,7 @@ to come out of its cave.
 
 <10>황녀 안쥬의 명으로, 야마토의 정예 부대와 친선 시합을 하게 되었다.
 　또한 일부 타국에서 명성을 떨친 맹자들도 참전하는 모양이다.
-　혼전이 예상되지만, 지금이야말로 은밀로서의 실력을 보여
+　혼전이 예상되지만, 지금이야말로 밀정으로서의 실력을 보여
 　황녀의 신뢰를 쟁취하라!
 
 
@@ -3026,7 +3026,7 @@ unawares.
 　 <※此任務中出現的［ 祟溫凱米 ］是不會受到傷害的無敵狀態:#ff0050>"
 1538,BFE5A359,1472,1,"<【 격파형 임무 】:#ffd700>
 
-<10>사슬의 무녀 우루루・사라아나의 힘으로 브라이의 봉인을 시도한 하쿠 일행.
+<10>사슬의 무녀 우루루・사라나의 힘으로 브라이의 봉인을 시도한 하쿠 일행.
 　그러나 그 시도도 허무하게, 봉인은 마지막 한 걸음에서 깨져 버린다.
 　가면의 자로서 다시 강림한 브라이와 대치하는 하쿠 일행.
 　장렬한 최후의 싸움에, 이제 마침표가 찍힌다.",1,"<[Battle Mission]:#ffd700>
@@ -3211,7 +3211,7 @@ to catch them before the trail goes cold!",33,"<【 擊敗型/收集型任務 �
 
 <10>황녀 안쥬는 의적 노스리 일가의 힘을 빌려, 충동적인 광언 유괴를 실행한다.
 　그러나 이 사실이 세상에 알려지면, 그야말로 큰일이 되고 만다.
-　하쿠 일행은 은밀로서 신속한 해결을 꾀하지만, 사정을 모르는 노스리는
+　하쿠 일행은 밀정으로서 신속한 해결을 꾀하지만, 사정을 모르는 노스리는
 　소녀의 연정을 방해하는 악한으로서, 하쿠 일행과의 철저한 항전을 시작한다.",12,"<[Battle Mission]:#ffd700>
 
 Enlisting the help of the thief Nosuri, Imperial Princess Anju
@@ -3494,7 +3494,7 @@ before it's too late!",21,"<【 擊敗型任務 】:#ffd700>
 1581,18DDE87E,1672,6,심부름,6,ASSISTANT,6,幫手
 1582,1926333E,1686,16,제3장,16,CHAPTER 3,16,第3章
 1583,1E4BF727,1690,12,제7장,12,CHAPTER 7,12,第7章
-1584,1FB02C67,1676,2,풀의 자,2,NINJA,2,侍衛忍者
+1584,1FB02C67,1676,2,첩자,2,NINJA,2,侍衛忍者
 1585,226D8ACE,1634,24,산적의 산중 은거,24,HIDDEN MOUNTAIN BANDITS,24,山賊的隱居
 1586,233CBF78,1706,14,최초의 임무,14,FIRST MISSION,14,最初的任務
 1587,23841473,1571,13,금지된 불장난,13,PLAYING WITH FIRE,13,禁忌的玩火行為
@@ -3552,7 +3552,7 @@ before it's too late!",21,"<【 擊敗型任務 】:#ffd700>
 1639,7DDE8633,1680,4,제3계층,4,THIRD CLASS,4,第參階層
 1640,7FA63697,1664,8,오우기(扇)의 시련,8,OUGI'S TRIALS,8,扇的試煉
 1641,802F6284,1685,17,제2장,17,CHAPTER 2,17,第2章
-1642,81D4B9C4,1675,3,은밀,3,SPY,3,密探
+1642,81D4B9C4,1675,3,밀정,3,SPY,3,密探
 1643,83634C43,1619,15,전쟁광의 밤,15,WARMONGER NIGHTS,15,狂戰之夜
 1644,8742A69D,1689,13,제6장,13,CHAPTER 6,13,第6章
 1645,8952B9F6,1657,1,대식한의 연회,1,GLUTTONOUS PARTY,1,大胃王的宴席
@@ -3570,7 +3570,7 @@ before it's too late!",21,"<【 擊敗型任務 】:#ffd700>
 1657,94A3F530,1601,33,쿠쥬우리 범과장,33,KUJYURI'S ROGUES GALLERY,33,九重里犯罪紀錄
 1658,94BD2306,1682,2,최종 계층,2,TOP CLASS,2,最後階層
 1659,96C593A2,1658,14,하쿠의 시련,14,HAKU'S TRIALS,14,哈克的試煉
-1660,981E1B90,1666,6,우루루・사라아나의 시련,6,URUSARA'S TRIALS,6,烏露露・薩拉娜的試煉
+1660,981E1B90,1666,6,우루루・사라나의 시련,6,URUSARA'S TRIALS,6,烏露露・薩拉娜的試煉
 1661,993453C5,1695,7,제12장,7,CHAPTER 12,7,第12章
 1662,9A787D02,1609,25,봉기하는 흉룡,25,RISING KYORYU,25,奮起的兇龍
 1663,9D8C4B1B,1592,8,가면의 장수,8,MASKED COMMANDER,8,假面之將
@@ -3872,7 +3872,7 @@ Can dodge up to 6x.",5,"<16> <自在穿行 【特性狀態 6】:#ffd702>
 變成能夠連續進行6次迴避。"
 1755,0A67E4AF,2304,42,붉고 검게 흩날리는 죽음을 연상시키는 옷.,42,"Clothing evocative of death
 blooming like a dark red flower.",42,帶有紅黑交織死亡氣息的衣服。
-1756,0A77F890,2498,7,"우루루・사라아나의 색상 의상
+1756,0A77F890,2498,7,"우루루・사라나의 색상 의상
 <03><【홍청의 옷】:#ffd700>",7,"Uruuru & Saraana's
 alternate outfit
 <03> <[Red-Blue Outfit]:#ffd700> ",7,"烏露露・薩拉娜的染色服裝
@@ -3893,7 +3893,7 @@ Boosts party's DEF by 20%.",1,"<13> <仁義之門 【特性狀態 10】:#ffd700>
 1759,0B4DD48F,2258,16,<고급 약:#ffd700>,16,<High-Grade Medicine:#ffd700>,16,<高級的藥品:#ffd700>
 1760,0BC294CA,1778,16,크로우,16,Kurou,16,克羅
 1761,0C201096,2260,14,<상질의 과일:#7bff00>,14,<Premium Fruit:#7bff00>,14,<優質的果實:#7bff00>
-1762,0C274F5F,1736,58,사라아나,58,Saraana,58,薩拉娜
+1762,0C274F5F,1736,58,사라나,58,Saraana,58,薩拉娜
 1763,0C7A99AB,1724,3,전기 회상,3,Battle Recollections,3,戰記回想
 1764,0CAF50D3,1774,20,군두루아,20,Gundhurua,20,袞杜魯亞
 1765,0D145DCB,1921,4,"<12> <불요불굴 【특성 상태 7】:#ffd700>
@@ -3918,7 +3918,7 @@ evading is marginally increased.
 Can dodge up to 4x.",9,"<16> <自在穿行 【特性狀態 2】:#ffd701>
 極少延長閃避時的無敵時間，
 變成能夠連續進行4次迴避。"
-1769,0EE591A4,2106,37,"<19> <은밀의 책략 개:#ffd700>
+1769,0EE591A4,2106,37,"<19> <밀정의 책략 개:#ffd700>
 적에게 다소 들키기 어려워진다.",37,"<19> <Plan of Stealth+ I:#ffd700>
 Enemies will ignore you
 a little more often.",37,"<19> <隱身匿跡 改:#ffd700>
@@ -4200,7 +4200,7 @@ increments.",31,"<17> <垂死掙扎 改:#ffd700>
 氣力將持續蓄積[B]％。"
 1849,263418CD,1893,12,<17> <식귀 신탁:#ffd700>,12,<17> <Shikigami Companion:#ffd700>,12,<17> <式鬼信託:#ffd700>
 1850,26B01906,2414,1,전학사,1,Literati,1,殿學士
-1851,26C0CB58,2316,30,우르루・사라아나의 평상복.,30,"Uruuru & Saraana's normal
+1851,26C0CB58,2316,30,우르루・사라나의 평상복.,30,"Uruuru & Saraana's normal
 outfits.",30,烏露露・薩拉娜平常穿的衣服。
 1852,270D4355,2254,20,<상질의 차:#7bff00>,20,<Premium Tea:#7bff00>,20,<優質的茶:#7bff00>
 1853,27727331,2409,1,광기의 공주,1,Crazed Princess,1,狂公主
@@ -4685,7 +4685,7 @@ for 30 seconds.",3,"<15> <流水治癒 【特性狀態 8】:#ffd700>
 1977,564D87FA,2308,38,이끼 낀 깊은 숲을 느끼게 하는 옷.,38,"Clothing that hints of a forest
 covered in moss.",38,帶有苔蘚叢生密林印象的衣服。
 1978,565EEC42,1896,9,<16> <영주:#ffd700>,9,<16> <Shadow Run:#ffd700>,9,<16> <自在穿行:#ffd700>
-1979,56AA3FD7,2320,26,우루루・사라아나의 특별한 옷.,26,"Uruuru & Saraana's special
+1979,56AA3FD7,2320,26,우루루・사라나의 특별한 옷.,26,"Uruuru & Saraana's special
 outfits.",26,烏露露・薩拉娜的特殊服裝。
 1980,56DAED89,2411,4,공부를 좋아함,4,Bookworm,4,讀書愛好者
 1981,571887BE,2406,4,싸움을 좋아함,4,Warmonger,4,戰鬥愛好者
@@ -4896,8 +4896,8 @@ Increases Zeal by 15 point
 increments when moving.",6,"<17> <日行千里之勢 【特性狀態 5】:#ffd700>
 移動時,
 氣力會持續蓄積15。"
-2038,6C9B1B29,2063,36,<19> 은밀의 계책 개이,36,<19> Plan of Stealth+ II,36,<19> 隱身匿跡 改貳
-2039,6CE0C6BA,1737,57,우루루・사라아나,57,Uruuru & Saraana,57,烏露露・薩拉娜
+2038,6C9B1B29,2063,36,<19> 밀정의 계책 개이,36,<19> Plan of Stealth+ II,36,<19> 隱身匿跡 改貳
+2039,6CE0C6BA,1737,57,우루루・사라나,57,Uruuru & Saraana,57,烏露露・薩拉娜
 2040,6E0B21AB,2282,64,봄바람의 찾아옴을 느끼게 하는 옷.,64,"Clothing with the motif of
 a spring breeze.",64,帶有和煦春風印象的衣服。
 2041,6F703E19,2003,2,"<16> <연기 유도 【특성 상태 9】:#ffd700>
@@ -5144,7 +5144,7 @@ Boosts party's ATK by 8%.",7,"<12> <鼓舞士氣 【特性狀態 4】:#ffd700>
 Invincibility duration while
 evading is marginally increased.",10,"<16> <自在穿行 【特性狀態 1】:#ffd700>
 極少延長閃避時的無敵時間。"
-2081,79E2A132,2105,38,"<19> <은밀의 계책:#ffd700>
+2081,79E2A132,2105,38,"<19> <밀정의 계책:#ffd700>
 적에게 아주 조금 눈에 띄기 어려워진다.",38,"<19> <Plan of Stealth:#ffd700>
 Enemies will ignore you
 slightly more often.",38,"<19> <隱身匿跡:#ffd700>
@@ -5220,7 +5220,7 @@ Increases Zeal by 21 point
 increments when moving.",4,"<17> <日行千里之勢 【特性狀態 7】:#ffd700>
 移動時,
 氣力會持續蓄積21。"
-2102,82957A05,2061,38,<19> 은밀의 계책,38,<19> Plan of Stealth,38,<19> 隱身匿跡
+2102,82957A05,2061,38,<19> 밀정의 계책,38,<19> Plan of Stealth,38,<19> 隱身匿跡
 2103,82EEA796,1739,55,마로로,55,Maroro,55,麻呂呂
 2104,8487358C,2132,11,"<16> <강자의 서:#ffd700>
 잡졸을 한 방에 쓰러뜨릴 수 있게 된다.",11,"<16> <Champion Scroll:#ffd700>
@@ -5325,7 +5325,7 @@ a little more often.",40,"<19> <聲東擊西 改:#ffd700>
 <［20000］:#ffd700>dmg。
 
 <※現在的總傷害數［<CmbMaxDmg>］dmg:#00ffff:*090091>"
-2131,8C1CF12C,2488,2,"우루루・사라아나의 컬러 의상
+2131,8C1CF12C,2488,2,"우루루・사라나의 컬러 의상
 <03><【 심연의 옷 】:#ffd700>",2,"Uruuru & Saraana's
 alternate outfits
 <03> <[Abyss Outfit]:#ffd700> ",2,"烏露露・薩拉娜的染色服裝
@@ -5476,7 +5476,7 @@ evading is slightly increased.
 Can dodge up to 4x.",8,"<16> <自在穿行 【特性狀態 3】:#ffd702>
 稍微延長閃避時的無敵時間，
 變成能夠連續進行4次迴避。"
-2171,97ECC01E,2107,36,"<19> <은밀의 계책 개이:#ffd700>
+2171,97ECC01E,2107,36,"<19> <밀정의 계책 개이:#ffd700>
 적에게 눈에 띄기 어려워진다.",36,"<19> <Plan of Stealth+ II:#ffd700>
 Enemies will ignore you
 more often.",36,"<19> <隱身匿跡 改貳:#ffd700>
@@ -5808,7 +5808,7 @@ guaranteed to hit.
 
 <消耗氣力量［中］:#ff6e00>
 <游擊再次發動間隔［普通］:#00ffff>"
-2236,A99D29CD,1887,3,우루루・사라아나,3,Uruuru & Saraana,3,烏露露・薩拉娜
+2236,A99D29CD,1887,3,우루루・사라나,3,Uruuru & Saraana,3,烏露露・薩拉娜
 2237,A9B829C6,2067,32,<17> 사중구활,32,<17> Desperation,32,<17> 垂死掙扎
 2238,A9E5912A,1813,2,<09> 운증룡변（운조류헤ン）,2,<09> Unjo Ryuhen,2,<09> 雲捲龍躍
 2239,AA75B068,1954,1,"<16> <부동연격의 자세 【특성 상태 10】:#ffd700>
@@ -6623,7 +6623,7 @@ Increases Zeal by 24 point
 increments when moving.",3,"<17> <日行千里之勢 【特性狀態 8】:#ffd700>
 移動時,
 氣力會持續蓄積24。"
-2462,F5924A93,2062,37,<19> 은밀의 책략 개,37,<19> Plan of Stealth+ I,37,<19> 隱身匿跡 改
+2462,F5924A93,2062,37,<19> 밀정의 책략 개,37,<19> Plan of Stealth+ I,37,<19> 隱身匿跡 改
 2463,F5E99700,1740,54,우콘,54,Ukon,54,右近
 2464,F67748F4,1855,1,"[방어력+75％]
 [강화 효과 시간+15초]",1,"[DEF +75%]
@@ -6849,7 +6849,7 @@ Arranger: Junya Matsuoka, Vocals: Suara",25,"作詞：Naoko Sutani　作曲：Ju
 2550,3DB6F740,2517,76,애음・상,76,Elegiac Heart Poem,76,哀吟・想
 2551,3E5555A9,2677,2,작곡：키누가사 미치오　편곡：키누가사 미치오,2,"Composer: Michio Kinugasa, Arranger: Michio Kinugasa",2,作曲：Michio Kinugasa　編曲：Michio Kinugasa
 2552,40039139,2651,28,"작곡：마쓰오카 준야　편곡：마쓰오카 준야
-노래：우루루・사라아나（CV：사쿠라 아야네）",28,"Composer: Junya Matsuoka, Arranger: Junya Matsuoka,
+노래：우루루・사라나（CV：사쿠라 아야네）",28,"Composer: Junya Matsuoka, Arranger: Junya Matsuoka,
 Vocals: Uruuru & Saraana (Ayane Sakura)",28,"作曲：Junya Matsuoka　編曲：Junya Matsuoka
 演唱：烏露露・薩拉娜（CV：Ayane Sakura）"
 2553,40C10305,2543,50,저녁 잔잔,50,An Evening Calm,50,晚風
@@ -7461,7 +7461,7 @@ Misato Mitsumi"
 3051,4A6067C9,2965,0,×%d,0,×%d,0,×%d
 3052,4A64C517,2912,35,허가한다!_03,35,I give my consent!_03,35,我準了！_03
 3053,4ADE2ED4,3406,19,모집,19,Recruitment,19,募集
-3054,4AEAE702,3386,13,우루루・사라아나,13,Uruuru & Saraana,13,烏露露・薩拉娜
+3054,4AEAE702,3386,13,우루루・사라나,13,Uruuru & Saraana,13,烏露露・薩拉娜
 3055,4C4AFBE7,3207,1,확인하고 싶은 튜토리얼 항목을 선택해 주세요,1,Select Tutorial you wish to view,1,請選擇要確認的教學
 3056,4D09010E,2908,39,수고하셨습니다…,39,Well done...,39,辛苦了……
 3057,4D87231B,3390,9,무네치카,9,Munechika,9,宗近
@@ -7987,7 +7987,7 @@ you have been given
 3440,CA8EA392,2969,1,<rep Dleftright>항목 선택　<decide>결정　<cancel>돌아가기,1,<rep Dleftright> Select <decide> Confirm <cancel> Return,1,<rep Dleftright>選擇項目　<decide>決定　<cancel>返回
 3441,CA8FC56A,3267,4,<［카메라 속도］:#00ced1> 액션 파트 중 카메라 속도를 설정합니다,4,<[Camera Speed]:#00ced1> Set camera speed during Action Mode,4,<［視角速度］:#00ced1> 設定動作部分中的視角速度
 3442,CACC4E2F,3413,12,국가,12,Country,12,國
-3443,CAD5265F,3026,5,<［전기］:#00ced1> 「우타와레루모노 참」의 이야기를 진행할 수 있습니다,5,<[Story]:#00ced1> Play through the Utawarerumono: ZAN story,5,<［戰記］:#00ced1> 能夠推進「受讚頌者斬」的故事
+3443,CAD5265F,3026,5,<［전기］:#00ced1> 「칭송받는 자 참」의 이야기를 진행할 수 있습니다,5,<[Story]:#00ced1> Play through the Utawarerumono: ZAN story,5,<［戰記］:#00ced1> 能夠推進「受讚頌者斬」的故事
 3444,CAF887F9,3379,20,쿠온,20,Kuon,20,久遠
 3445,CB1B500B,3297,0,<10>비밀번호 없음,0,<10>No Password,0,<10>無密碼
 3446,CB39EE5A,3489,1,"축하합니다!
@@ -8150,7 +8150,7 @@ Replace assignment?",1,"輸入的操作目前已指派給其他功能。
 3553,EC3CC6A7,3348,0,<rep Dall>항목 선택　<decide>결정　<cancel>뒤로,0,<rep Dall> Select <decide> Confirm <cancel> Return,0,<rep Dall>選擇項目　<decide>決定　<cancel>返回
 3554,EC46F6E5,2920,27,나를 <따라와!:#ffc700>_03,27,<Come with me!:#ffc700>_03,27,<跟著:#ffc700>我！_03
 3555,EC9DB8D9,3087,2,유닛 강화,2,Enhance,2,單位強化
-3556,ED03483B,3466,0,<10> <【 %s 】:#ffd700>이 은밀로서 합류했습니다.,0,"<10><[%s]:#ffd700>
+3556,ED03483B,3466,0,<10> <【 %s 】:#ffd700>이 밀정으로서 합류했습니다.,0,"<10><[%s]:#ffd700>
 has been added to Party.",0,<10> <【 %s 】:#ffd700> 加入了密探隊伍。
 3557,ED225DD8,3163,0,이미 보상을 수령했습니다,0,You already have this reward,0,報酬已領取
 3558,ED6AEA6C,3194,1,sys001090,1,sys001090,1,sys001090
@@ -8543,7 +8543,7 @@ Very effective against foes with
 공격력이 높은 유닛은 다음과 같습니다.
 
 　→<노스리:#ffd700>：길게 누르기<rep_26> 차지 사격으로 요격 공격을 노린다
-　→<우루루・사라아나:#ffd700>：전 유닛 중 최강의 공격력을 자랑
+　→<우루루・사라나:#ffd700>：전 유닛 중 최강의 공격력을 자랑
 　→<아토이:#ffd700>：끊임없는 고화력 공격으로 근접전을 제압",10,"<[Offensive Units]:#00ffff>
 Units with high ATK are effective
 against foes with high DEF or max HP.
@@ -8674,14 +8674,14 @@ less risky.",49,"<【久遠的能力】:#00ffff>
 <體力50％以下時，攻擊力大幅上升:#ffd700>。
 若裝備防禦及體力增加系的卷軸，
 則能夠安定維持其特性。"
-3638,429B6913,3615,43,우루루・사라아나에 대해,43,Uruuru & Saraana,43,關於烏露露・薩拉娜
-3639,4.62E+07,3666,42,"<【우루루・사라아나의 능력】:#00ffff>
+3638,429B6913,3615,43,우루루・사라나에 대해,43,Uruuru & Saraana,43,關於烏露露・薩拉娜
+3639,4.62E+07,3666,42,"<【우루루・사라나의 능력】:#00ffff>
 전 유닛 중 최대의 공격력을 자랑하며,
 원거리에서의 광범위 공격에 특화된 <［초공격형 유닛］:#ffd700>입니다.
 공격력이 높은 반면, 적의 공격에 취약하므로
 방패 역할의 유닛에게 보호받으며 싸울 필요가 있습니다.
 
-<【우루루・사라아나의 특성 -혼쇄-】:#00ffff>
+<【우루루・사라나의 특성 -혼쇄-】:#00ffff>
 <모든 공격에 ［고정 피해］가 부여:#ffd700>되어,
 특수기 등의 연속 공격이 매우 강력해집니다.
 고정 피해는 방어력이 높은 적에게 효과적입니다.",42,"<[Stats]:#00ffff>
@@ -8819,7 +8819,7 @@ lots of Chain Attacks at once.",40,"<【麻呂呂的能力】:#00ffff>
 　 →방어력을 상승시키는 <［<13> 완강의 마음가짐］:#ffd700>
 
 　 적에게 집중 공격을 받는다……
-　 →적의 눈을 피하는 <［<19> 은밀의 책략］:#ffd700>
+　 →적의 눈을 피하는 <［<19> 밀정의 책략］:#ffd700>
 
 　 결정타가 필요한 순간이 있다……
 　 →기력 해방을 강화하는 <［<12> 자연 융합］:#ffd700>",1,"<[Collect More Scrolls!]:#00ffff>
@@ -8897,7 +8897,7 @@ in the following ways:
 
 　→루루티에：<乙女椿（오토메츠바키）:#ffd700>
 　→오우기：<八雲斬（야쿠모잔）:#ffd700>
-　→우루루・사라아나：<烈火?覇斬（렛카소우하잔）:#ffd700>
+　→우루루・사라나：<烈火?覇斬（렛카소우하잔）:#ffd700>
 　→우콘：<太刀風（타치카제）:#ffd700>",9,"<[How to Reduce Brawn]:#00ffff>
 When faced with a boss or other
 strong enemies, strike fast to break
@@ -8920,7 +8920,7 @@ Ukon: <Tachikaze:#ffd700>",9,"<【削弱強韌的心得】:#00ffff>
 　→烏露露・薩拉娜：<烈火雙霸斬:#ffd700>
 　→右近：<太刀風:#ffd700>"
 3653,5CCB3B5B,3703,5,"<【초고화력 주법/술법 부대】:#00ffff>
-기력이 모이기 어려운 우루루・사라아나에 대해,
+기력이 모이기 어려운 우루루・사라나에 대해,
 마로로의 특성 <［<17> 기합 침투］:#ffd700>와 병법서 <［달의 진］:#ffd700>이
 기력 축적을 보완하는, <초고화력의 연격을 주축:#ffd700>으로 한 편성.
 
@@ -8928,7 +8928,7 @@ Ukon: <Tachikaze:#ffd700>",9,"<【削弱強韌的心得】:#00ffff>
 　→<달의 진:#ffd700>
 
 <【부대 편성】:#00ffff>
-　→<우루루・사라아나:#ffd700>
+　→<우루루・사라나:#ffd700>
 　→<마로로:#ffd700>
 　→<네코네:#ffd700>
 　→<루루티에:#ffd700>",5,"<[Explosive Firepower]:#00ffff>
@@ -9391,7 +9391,7 @@ concentrate on offense.
 　→<阿圖依:#ffd700>
 　→<奇羽琉:#ffd700>"
 3690,C5C26AE1,3704,4,"<【하늘의 진 부대】:#00ffff>
-사기 파라미터가 낮은 우루루・사라아나를
+사기 파라미터가 낮은 우루루・사라나를
 편성하면서도, 병법서 <［하늘의 진］:#ffd700>의
 사기 레벨 <［오］:#ffd700>를 간신히 발동 가능하게 한 편성.
 <매우 효과가 높은 진 효과:#ffd700>를 받을 수 있다.
@@ -9403,7 +9403,7 @@ concentrate on offense.
 　→<하쿠:#ffd700>
 　→<루루티에:#ffd700>
 　→<우콘:#ffd700>
-　→<우루루・사라아나:#ffd700>",4,"<[Divine Might]:#00ffff>
+　→<우루루・사라나:#ffd700>",4,"<[Divine Might]:#00ffff>
 This uses the <[Heaven Sigil]:#ffd700> to boost
 Uruuru & Saraana's low Spirit stat all
 the way to <Level 5:#ffd700>. Good for exploiting
@@ -9685,7 +9685,7 @@ and holding <rep_26>.",2,"<rep triangle>特殊技能是按著<rep_26>的時候�
 <회복계 연격으로 즉시 부활:#ffd700>시킬 수 있습니다.",2,"Near-death Units can be rescued by <getting close to them and holding <rep_25>:#ffd700>, but <using recovery Chain Attacks:#ffd700> will also work.",2,"<在瀕死的單位附近長按<rep_25>:#ffd700>就能進行救助，
 也可以用<恢復型連擊進行瞬間復活:#ffd700>。"
 3727,253995DE,3725,13,도달계 목표에 대해,13,Travel Missions,13,關於抵達型目標
-3728,25DEED62,3774,2,<【의상 변경】:#ffd700>에 대해,2,<[Changing Outfits]:#ffd700>,2,關於<【更換服裝】:#ffd700>
+3728,25DEED62,3774,2,<[의상 변경]:#ffd700>에 대해,2,<[Changing Outfits]:#ffd700>,2,關於<【更換服裝】:#ffd700>
 3729,2B0FFB7D,3785,1,"조작 유닛을 변경해 전황에 맞는 전투 방식을 선택하면,
 <임무를 유리하게 진행할 수 있습니다.#ffd700>
 적극적으로 유닛을 전환해 다양한 전법을 시험해 보세요.",1,Switching between Units allows you to choose the best fighting style for the situation. Choose wisely to <give yourself a greater advantage against your foes:#ffd700>.,1,"變更操作單位來順應戰況選擇合適的作戰方式，
@@ -9778,7 +9778,7 @@ You can upgrade them to <increase their level:#ffd700>.",5,"普通卷軸等級�
 <由房主決定部隊的方向性:#ffd700>的情況比較多，
 所以與遊客互相合作一起遊玩吧。"
 3764,523EA548,3724,14,임무에 대해,14,Missions,14,關於任務
-3765,52D9DDF4,3775,1,"임무 달성 보상이나 장비 연성 등으로, 색이 다른 의상 <［색 의상］:#ffd700>을
+3765,52D9DDF4,3775,1,"임무 달성 보상이나 장비 연성 등으로, <색이 다른 의상:#ffd700>을
 손에 넣을 수 있습니다. 손에 넣은 색 의상은 이 의상 변경에서
 <의상 확인:#ffd700>, <갈아입기:#ffd700>를 할 수 있습니다.",1,<Alternate Outfits:#ffd700> can be earned as rewards for completing Missions or during Equipment Upgrades. The outfits you've collected can be <viewed:#ffd700> or <equipped:#ffd700> here.,1,"從任務的完成報酬及裝備煉成等，可以獲得不同顏色的服裝
 <［染色服裝］:#ffd700>。若要更換為已獲得的染色服裝，
@@ -9837,7 +9837,7 @@ their stats.",4,"每個單位都擁有2種欄位，分別是各不相同的固�
 1명이 참가 중인 룸은 <［파란색］:#00b2ff>로 표시됩니다.",7,"<Yellow:#ffd700> indicates a room with three players, <green:#2df704> for two, and <blue:#00b2ff> for one.",7,"3人參加的話為<［黃色］:#ffd700>
 2人參加的話為<［綠色］:#2df704>
 1人參加的話為<［藍色］:#00b2ff>。"
-3783,6FB9F444,3827,3,"자유 임무는 오슈트르의 은밀 임무로서
+3783,6FB9F444,3827,3,"자유 임무는 오슈트르의 밀정 임무로서
 다양한 임무에 도전하는 <프리 모드:#ffd700>입니다.",3,<Free Missions:#ffd700> are self-contained challenges devised by Oshtor as part of his secret plans.,3,"自由任務是作為奧修特爾的密探，
 挑戰各式各樣任務的<自由模式:#ffd700>。"
 3784,71DB7F71,3873,1,"<병법서 결정:#ffd700> 등 <부대의 방향성은 호스트에게 맡겨지는:#ffd700> 경우가
