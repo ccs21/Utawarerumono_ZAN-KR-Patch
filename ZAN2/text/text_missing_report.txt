@@ -1,0 +1,2 @@
+Missing Hangul mappings report
+- Unique missing chars: 0
