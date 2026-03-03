@@ -11,7 +11,7 @@ Utawarerumono ZAN - text.ttb importer/exporter
 - 3 language blocks, each:
   - 3874 * 16B records: (marker_or_langcode_u32, str_off_u32, str_len_u32, flags_u32)
     - record 0 marker == 4CC ("jaJP","enUS","zhTW" etc)
-    - record 1.. marker == 642 (0x0) in the observed file
+    - record 1.. marker == 642 (0x282) in the observed file
   - followed by uint32 terminator == 642
 - String pool starts at pool_data_off (header field)
   - Strings are UTF-8 and include trailing NUL (0x00)
@@ -43,7 +43,7 @@ from pathlib import Path
 from typing import Dict, List, Tuple
 
 
-MARKER_DEFAULT = 0x0  # ZAN2: terminator marker is 0  # 642 observed
+MARKER_DEFAULT = 0x282  # 642 observed
 MAGIC = b"TTB0"
 
 
@@ -142,6 +142,7 @@ class TTBFile:
     lang_codes: List[str]
     lang_records: List[List[LangRecord]]  # [lang][rec_index]
     strings: List[List[bytes]]  # [lang][rec_index] raw bytes including NUL
+    lang_terms: List[int]  # 각 언어블록 terminator 저장
 
     @staticmethod
     def load(path: Path) -> "TTBFile":
@@ -187,10 +188,18 @@ class TTBFile:
                 marker, off, length, flags = struct.unpack_from("<4I", raw, block_off + i * 16)
                 recs.append(LangRecord(marker=marker, off=off, length=length, flags=flags))
             term = struct.unpack_from("<I", raw, block_off + header.entry_count * 16)[0]
-            if term != MARKER_DEFAULT:
-                # Some games might use a different terminator; keep reading but warn
-                raise ValueError(f"Unexpected language-block terminator: {term} (expected {MARKER_DEFAULT}) at lang#{li}")
 
+            # 파일에서 "기본 마커"를 추정:
+            # - 참1: rec1.marker == 0x282, term도 0x282
+            # - 참2: rec1.marker == 0, term도 0
+            expected = recs[1].marker if header.entry_count >= 2 else term
+
+            if term != expected:
+                raise ValueError(
+                    f"Unexpected language-block terminator: {term} (expected {expected}) at lang#{li}"
+                )
+
+            lang_terms.append(term)
             lang_code = fourcc_to_str(recs[0].marker)
             lang_codes.append(lang_code)
             lang_records.append(recs)
@@ -314,7 +323,7 @@ def import_csv(ttb: TTBFile, in_csv: Path, out_ttb: Path, target_lang: str) -> N
     for lang_i in range(ttb.header.lang_count):
         block_off = ttb.header.lang_blocks_off + lang_i * ttb.header.lang_block_size
         for rec_idx in range(ttb.header.entry_count):
-            # marker stays as-is (lang code in rec0, 0x0 for others)
+            # marker stays as-is (lang code in rec0, 0x282 for others)
             marker = ttb.lang_records[lang_i][rec_idx].marker
             flags = ttb.lang_records[lang_i][rec_idx].flags  # keep flags by default
             struct.pack_into("<4I", prefix, block_off + rec_idx * 16,
@@ -322,8 +331,8 @@ def import_csv(ttb: TTBFile, in_csv: Path, out_ttb: Path, target_lang: str) -> N
                              u32(new_offsets[lang_i][rec_idx]),
                              u32(new_lengths[lang_i][rec_idx]),
                              u32(flags))
-        # terminator remains as-is (should be 0x0)
-        struct.pack_into("<I", prefix, block_off + ttb.header.entry_count * 16, MARKER_DEFAULT)
+        # terminator remains as-is (should be 0x282)
+        struct.pack_into("<I", prefix, block_off + ttb.header.entry_count * 16, ttb.lang_terms[lang_i])
 
     # New pool_data_off is right after the language blocks (same as original in this format)
     new_pool_data_off = ttb.header.lang_blocks_off + lang_blocks_size
