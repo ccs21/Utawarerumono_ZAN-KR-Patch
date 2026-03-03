@@ -1,0 +1,153 @@
+// dinput8_hook.cpp
+// - dinput8.dll proxy (exports via dinput8.def)
+// - PLAN B: DllMain에서 아무것도 하지 않고,
+//   DirectInput8Create 최초 호출 시점에만 1회 CreateFileW 훅(폰트 ja->kr) 설치.
+//
+// 저장은 UTF-8(BOM) 추천 (C4819 경고 방지)
+
+#define WIN32_LEAN_AND_MEAN
+#define NOMINMAX
+#include <windows.h>
+#include <unknwn.h>
+#include <string>
+
+#include "MinHook.h"
+
+// =======================
+// Real dinput8 loader (lazy)
+// =======================
+static HMODULE g_realDInput8 = nullptr;
+
+static void EnsureRealDInput8Loaded()
+{
+    if (g_realDInput8) return;
+
+    wchar_t sysDir[MAX_PATH]{};
+    GetSystemDirectoryW(sysDir, MAX_PATH);
+
+    wchar_t realPath[MAX_PATH]{};
+    wsprintfW(realPath, L"%s\\dinput8.dll", sysDir);
+
+    g_realDInput8 = LoadLibraryW(realPath);
+}
+
+template<typename T>
+static T GetRealProc(const char* name)
+{
+    EnsureRealDInput8Loaded();
+    if (!g_realDInput8) return nullptr;
+    return (T)GetProcAddress(g_realDInput8, name);
+}
+
+// =======================
+// CreateFileW hook (font)
+// =======================
+using PFN_CreateFileW = HANDLE (WINAPI*)(
+    LPCWSTR lpFileName,
+    DWORD dwDesiredAccess,
+    DWORD dwShareMode,
+    LPSECURITY_ATTRIBUTES lpSecurityAttributes,
+    DWORD dwCreationDisposition,
+    DWORD dwFlagsAndAttributes,
+    HANDLE hTemplateFile
+);
+
+static PFN_CreateFileW Real_CreateFileW = nullptr;
+static thread_local std::wstring tls_path;
+
+static bool MatchAndRewriteFontPath(LPCWSTR in, LPCWSTR& out)
+{
+    if (!in) return false;
+
+    // exact match only, keep "/" style
+    if (lstrcmpW(in, L"System/Font/ja/font_00.lds") == 0) { tls_path = L"System/Font/kr/font_00.lds"; out = tls_path.c_str(); return true; }
+    if (lstrcmpW(in, L"System/Font/ja/binary_00.bin") == 0) { tls_path = L"System/Font/kr/binary_00.bin"; out = tls_path.c_str(); return true; }
+    if (lstrcmpW(in, L"System/Font/ja/font_01.lds") == 0) { tls_path = L"System/Font/kr/font_01.lds"; out = tls_path.c_str(); return true; }
+    if (lstrcmpW(in, L"System/Font/ja/binary_01.bin") == 0) { tls_path = L"System/Font/kr/binary_01.bin"; out = tls_path.c_str(); return true; }
+
+    return false;
+}
+
+static HANDLE WINAPI Hook_CreateFileW(
+    LPCWSTR lpFileName,
+    DWORD dwDesiredAccess,
+    DWORD dwShareMode,
+    LPSECURITY_ATTRIBUTES lpSecurityAttributes,
+    DWORD dwCreationDisposition,
+    DWORD dwFlagsAndAttributes,
+    HANDLE hTemplateFile
+) {
+    LPCWSTR useName = lpFileName;
+    MatchAndRewriteFontPath(lpFileName, useName);
+
+    return Real_CreateFileW(
+        useName,
+        dwDesiredAccess,
+        dwShareMode,
+        lpSecurityAttributes,
+        dwCreationDisposition,
+        dwFlagsAndAttributes,
+        hTemplateFile
+    );
+}
+
+static void InstallCreateFileHookOnce()
+{
+    // Modern Windows: KERNELBASE has the real implementation
+    if (HMODULE h = GetModuleHandleW(L"KERNELBASE.dll")) {
+        auto p = (PFN_CreateFileW)GetProcAddress(h, "CreateFileW");
+        if (p) {
+            MH_CreateHook((LPVOID)p, (LPVOID)Hook_CreateFileW, (LPVOID*)&Real_CreateFileW);
+            MH_EnableHook((LPVOID)p);
+            return;
+        }
+    }
+    // fallback
+    if (HMODULE h = GetModuleHandleW(L"kernel32.dll")) {
+        auto p = (PFN_CreateFileW)GetProcAddress(h, "CreateFileW");
+        if (p) {
+            MH_CreateHook((LPVOID)p, (LPVOID)Hook_CreateFileW, (LPVOID*)&Real_CreateFileW);
+            MH_EnableHook((LPVOID)p);
+            return;
+        }
+    }
+}
+
+static INIT_ONCE g_initOnce = INIT_ONCE_STATIC_INIT;
+
+static BOOL CALLBACK InitOnceCallback(PINIT_ONCE, PVOID, PVOID*)
+{
+    if (MH_Initialize() == MH_OK) {
+        InstallCreateFileHookOnce();
+    }
+    return TRUE;
+}
+
+static void EnsureHooksInstalled()
+{
+    InitOnceExecuteOnce(&g_initOnce, InitOnceCallback, nullptr, nullptr);
+}
+
+// =======================
+// Export: DirectInput8Create
+// =======================
+extern "C" HRESULT WINAPI My_DirectInput8Create(
+    HINSTANCE hinst,
+    DWORD dwVersion,
+    REFIID riidltf,
+    LPVOID* ppvOut,
+    IUnknown* punkOuter
+) {
+    // 여기서 1회만 훅 설치 (폰트 로드 전에 들어오면 가장 좋음)
+    EnsureHooksInstalled();
+
+    using Fn = HRESULT (WINAPI*)(HINSTANCE, DWORD, REFIID, LPVOID*, LPUNKNOWN);
+    auto fn = GetRealProc<Fn>("DirectInput8Create");
+    return fn ? fn(hinst, dwVersion, riidltf, ppvOut, punkOuter) : E_FAIL;
+}
+
+BOOL WINAPI DllMain(HINSTANCE, DWORD, LPVOID)
+{
+    // DllMain에서는 아무 것도 안 함 (안전)
+    return TRUE;
+}
