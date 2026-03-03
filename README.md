@@ -51,3 +51,6 @@
 ## UI
 ### ttb_tool_zan2.py (추출)
 - python ttb_tool_zan2.py export text_ori.ttb text.csv
+
+### hangul2kanji_ttb_patcher.py (패치)
+- hangul2kanji_ttb_patcher.py --ttb text_ori.ttb --csv text.csv --mapping hangul_to_kanji_mapping_2350.csv --out-ttb text.ttb
