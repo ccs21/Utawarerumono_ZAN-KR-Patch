@@ -45,4 +45,8 @@
 - python talkspt_jp_workflow_inplace_strict_ok_v3.py apply talkspt.cat text_jp.csv text_jp_diag_recovered_hangul_edit.csv talkspt_patched.cat --hangul2kanji-csv hangul_to_kanji_mapping_2350.csv
 
 
+---
+# 참2
+
+## UI
 
