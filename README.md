@@ -49,4 +49,5 @@
 # 참2
 
 ## UI
-
+### ttb_tool.py (추출)
+- python ttb_tool.py export text_ori.ttb text.csv
