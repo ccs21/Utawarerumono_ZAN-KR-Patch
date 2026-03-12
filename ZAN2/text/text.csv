@@ -37747,7 +37747,7 @@ when HP is 50% or lower.",0,"體力為50%以下且為攻擊狀態時
 18177,4BD32B9A,18207,181,기력 해방[기초],181,Overzeal [Basic],181,氣力解放[基礎]
 18178,4CFCB315,18370,18,[기력 해방 중] 회심 공격 강화,18,[During Overzeal] Critical Attack Boost,18,[氣力解放中]強化會心攻擊
 18179,4D097B2D,18172,0,고유 특성[연기유도],0,Individual Ability [Skill Tutor],0,固有特性[鍊技誘導]
-18180,4EBA0D4C,18270,118,[기력 해방 중] 치명 공격[迎撃] 강화,118,[During Overzeal] Fatal Attack [Counter] Boost,118,[氣力解放中]強化致命攻擊[迎擊]
+18180,4EBA0D4C,18270,118,[기력 해방 중] 치명 공격[영격] 강화,118,[During Overzeal] Fatal Attack [Counter] Boost,118,[氣力解放中]強化致命攻擊[迎擊]
 18181,50B9068D,18203,0,고유 특성[투사의 눈동자],0,Individual Ability [Eye of the Virata],0,固有特性[鬥士之瞳]
 18182,50CCF814,18264,124,[기력 해방 발동 시] 피해 경감 효과 부여（범위）,124,[When Activating Overzeal] Applies Damage Reduction (AOE),124,[氣力解放發動時]賦予減傷效果（範圍）
 18183,528A464D,18364,24,[공중기] 회심 확률 강화,24,[Midair Attack] Critical Rate Boost,24,[空中技能]會心機率提升
@@ -37913,7 +37913,7 @@ when HP is 50% or lower.",0,"體力為50%以下且為攻擊狀態時
 18343,C015E508,18089,0,연격 병 [連撃3],0,Chain C [連撃3],0,連擊 丙 [連撃3]
 18344,C1D78F3F,18093,0,연격 병 [連撃3],0,Chain C [連撃3],0,連擊 丙 [連撃3]
 18345,C2535B51,18101,0,연격 병 [連撃3],0,Chain C [連撃3],0,連擊 丙 [連撃3]
-18346,C277074A,18216,172,치명 공격[迎撃] 강화,172,Fatal Attack [Counter] Boost,172,致命攻擊[迎擊]強化
+18346,C277074A,18216,172,치명 공격[영격] 강화,172,Fatal Attack [Counter] Boost,172,致命攻擊[迎擊]強化
 18347,C3913166,18097,0,연격 병 [連撃3],0,Chain C [連撃3],0,連擊 丙 [連撃3]
 18348,C3B56D7D,18316,72,특수기 강화,72,Special Attack Boost,72,特殊技能強化
 18349,C3C093E4,18175,0,고유 특성[인의의 문],0,Individual Ability [Code of Honor],0,固有特性[仁義之門]
