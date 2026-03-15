@@ -16,6 +16,7 @@
 ## UI
 ### ttb_tool.py
 - python ttb_tool.py export text_ori.ttb text.csv
+- python ttb_tool.py export text101.ttb text2.csv (1.01)
 
 ### hangul2kanji_ttb_patcher.py
 - python hangul2kanji_ttb_patcher.py --ttb text_ori.ttb --csv text.csv --mapping hangul_to_kanji_mapping_2350.csv --out-ttb text_new.ttb
