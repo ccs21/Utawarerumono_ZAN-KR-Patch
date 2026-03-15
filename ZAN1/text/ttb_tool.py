@@ -43,7 +43,7 @@ from pathlib import Path
 from typing import Dict, List, Tuple
 
 
-MARKER_DEFAULT = 0x282  # 642 observed
+MARKER_DEFAULT = 0x221  # 545 observed in 1.01
 MAGIC = b"TTB0"
 
 
